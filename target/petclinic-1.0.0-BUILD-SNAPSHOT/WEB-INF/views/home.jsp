@@ -15,6 +15,6 @@
 		${serverTime}.
 	</P>
 	<br/><br/>
-	<a href="login.jsp">Login</a>
+	<a href="login">Login</a>
 </body>
 </html>

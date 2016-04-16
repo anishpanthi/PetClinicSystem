@@ -53,7 +53,7 @@
 		class="org.springframework.beans.factory.config.PropertiesFactoryBean">
 		<beans:property name="properties">
 			<beans:props>
-				<beans:prop key="hibernate.hbm2ddl.auto">none</beans:prop>
+				<beans:prop key="hibernate.hbm2ddl.auto">create</beans:prop>
 				<beans:prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</beans:prop>
 				<beans:prop key="connection.pool.size">1</beans:prop>
 				<beans:prop key="hibernate.show_sql">true</beans:prop>
