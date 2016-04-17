@@ -3,24 +3,36 @@ package com.amt.petclinic.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.amt.petclinic.dao.FeedbackDAO;
+import com.amt.petclinic.domain.Feedback;
 import com.amt.petclinic.test.Country;
 
 @RestController
 public class CountryControllerREST {
+	
+	@Resource
+	private FeedbackDAO feedbackDAO;
 
-	@RequestMapping(value = "/api/countries", method = RequestMethod.GET, headers = "Accept=application/json")
+	@RequestMapping(value = "/api/getAllCountries", method = RequestMethod.GET, headers = "Accept=application/json")
 	public List<Country> getCountries() {
 		List<Country> listOfCountries = new ArrayList<Country>();
 		listOfCountries = createCountryList();
 		return listOfCountries;
 	}
+	
+	@RequestMapping(value="/api/getAllComments", method=RequestMethod.GET, headers="Accept=application/json")
+	public List<Feedback> getAllFeedbacks(){
+		return feedbackDAO.findAll();
+	}
 
-	@RequestMapping(value = "/api/countries/{id}", method = RequestMethod.GET, headers = "Accept=application/json")
+	@RequestMapping(value = "/api/getCountries/{id}", method = RequestMethod.GET, headers = "Accept=application/json")
 	public Country getCountryById(@PathVariable int id) {
 		List<Country> listOfCountries = new ArrayList<Country>();
 		listOfCountries = createCountryList();

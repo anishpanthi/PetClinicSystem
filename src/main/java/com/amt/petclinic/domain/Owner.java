@@ -50,9 +50,6 @@ public class Owner implements Serializable {
 	private String lastname;
 	private String phone;
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "ownerid")
-	private Collection<Feedback> feedbackCollection;
-	
 	@JoinColumn(name = "Address_id", referencedColumnName = "id")
 	@ManyToOne(optional = false)
 	private Address addressid;
@@ -107,15 +104,6 @@ public class Owner implements Serializable {
 
 	public void setPhone(String phone) {
 		this.phone = phone;
-	}
-
-	@XmlTransient
-	public Collection<Feedback> getFeedbackCollection() {
-		return feedbackCollection;
-	}
-
-	public void setFeedbackCollection(Collection<Feedback> feedbackCollection) {
-		this.feedbackCollection = feedbackCollection;
 	}
 
 	public Address getAddressid() {

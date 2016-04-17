@@ -29,15 +29,16 @@
 	</beans:bean>
 
 	<context:component-scan base-package="com.amt.petclinic" />
-	
+
 	<mvc:default-servlet-handler />
-	
+
 	<beans:bean id="feedbackDAO" class="com.amt.petclinic.dao.FeedbackDAO">
 		<beans:constructor-arg ref="sessionFactory" />
 	</beans:bean>
-	
-	<!-- <beans:bean id="springSecurityFilterChain" class="com.amt.petclinic.config.SpringSecurityInitializer"/> -->
-	
+	<beans:bean id="ownerDAO" class="com.amt.petclinic.dao.OwnerDAO">
+		<beans:constructor-arg ref="sessionFactory" />
+	</beans:bean>
+
 	<!-- <jpa:repositories base-package="com.amt.petclinic"></jpa:repositories> -->
 
 	<beans:bean id="messageSource"
@@ -63,7 +64,7 @@
 		class="org.springframework.beans.factory.config.PropertiesFactoryBean">
 		<beans:property name="properties">
 			<beans:props>
-				<beans:prop key="hibernate.hbm2ddl.auto">none</beans:prop>
+				<beans:prop key="hibernate.hbm2ddl.auto">update</beans:prop>
 				<beans:prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect
 				</beans:prop>
 				<beans:prop key="connection.pool.size">1</beans:prop>
@@ -105,5 +106,4 @@
 			<beans:property name="paramName" value="locale" />
 		</beans:bean>
 	</interceptors>
-
 </beans:beans>

@@ -5,21 +5,26 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
 <title>Feedbacks</title>
 </head>
 <body>
-	<h1>Customer Feedbacks</h1>
-	<table border=1>
-		<c:forEach var="feedback" items="${feedbacks}">
-			<tr>
-				<td>${feedback.firstname}</td>
-				<td>${feedback.lastname}</td>
-				<td>${feedback.email}</td>
-				<td>${feedback.comments}</td>
-				<%-- <td><a href="edit/${movie.id}">Edit</a></td>
-				<td><a href="delete/${movie.id}">Delete</a></td> --%>
-			</tr>
-		</c:forEach>
-	</table>
+	<h1 align="center">Customer Feedbacks</h1>
+	<div class="container">
+		<table class="table table-striped">
+			<th>First Name</th>
+			<th>Last Name</th>
+			<th>Comment</th>
+			<c:forEach var="feedback" items="${feedbacks}">
+				<tr>
+					<td>${feedback.firstname}</td>
+					<td>${feedback.lastname}</td>
+					<td>${feedback.comments}</td>
+				</tr>
+			</c:forEach>
+		</table>
+	</div>
 </body>
 </html>

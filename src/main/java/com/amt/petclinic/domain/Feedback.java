@@ -48,23 +48,18 @@ public class Feedback implements Serializable {
 	private String lastname;
 	private String email;
 	@Lob
-	@Column(name = "comments")
 	private String comments;
-	@JoinColumn(name = "Owner_id", referencedColumnName = "id")
-	@ManyToOne(optional = false)
-	private Owner ownerid;
 
 	public Feedback() {
 		super();
 	}
 
-	public Feedback(String firstname, String lastname, String email, String comments, Owner ownerid) {
+	public Feedback(String firstname, String lastname, String email, String comments) {
 		super();
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.email = email;
 		this.comments = comments;
-		this.ownerid = ownerid;
 	}
 
 	public Feedback(Integer id) {
@@ -109,14 +104,6 @@ public class Feedback implements Serializable {
 
 	public void setComments(String comments) {
 		this.comments = comments;
-	}
-
-	public Owner getOwnerid() {
-		return ownerid;
-	}
-
-	public void setOwnerid(Owner ownerid) {
-		this.ownerid = ownerid;
 	}
 
 	@Override

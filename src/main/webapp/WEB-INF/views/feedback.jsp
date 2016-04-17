@@ -6,39 +6,50 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
 <title>Send Us Feedback</title>
 </head>
 <body>
-	<h1>Please Provide Your Valuable Feedback.</h1>
+
+	<h1 align="center">Please Provide Your Valuable Feedback.</h1>
 	<form action="feedback" method="post">
-		<table>
+		<table align="center">
 			<tr>
 				<spring:bind path="feedback.firstname">
-					<td><label>First Name:</label></td>
-					<td><form:input path="feedback.firstname" /></td>
+					<td><label for="firstname">&nbsp;&nbsp;First
+							Name:&nbsp;&nbsp;</label></td>
+					<td><form:input path="feedback.firstname" class="form-control"
+							id="firstname" /></td>
 				</spring:bind>
 			</tr>
 			<tr>
 				<spring:bind path="feedback.lastname">
-					<td><label>Last Name:</label></td>
-					<td><form:input path="feedback.lastname" /></td>
+					<td><label for="lastname">&nbsp;&nbsp;Last
+							Name:&nbsp;&nbsp;</label></td>
+					<td><form:input path="feedback.lastname" class="form-control"
+							id="lastname" /></td>
 				</spring:bind>
 			</tr>
 			<tr>
 				<spring:bind path="feedback.email">
-					<td><label>Email:</label></td>
-					<td><form:input path="feedback.email" /></td>
+					<td><label for="email">&nbsp;&nbsp;Email:&nbsp;&nbsp;</label></td>
+					<td><form:input path="feedback.email" class="form-control"
+							id="email" /></td>
 				</spring:bind>
 			</tr>
 			<tr>
 				<spring:bind path="feedback.comments">
-					<td><label>Comments:</label></td>
-					<td><form:textarea path="feedback.comments" rows="5" cols="30" /></td>
+					<td><label for="comments">&nbsp;&nbsp;Comments:&nbsp;&nbsp;</label></td>
+					<td><form:textarea path="feedback.comments" rows="5" cols="30"
+							class="form-control" id="comments" /></td>
 				</spring:bind>
 			</tr>
+			<tr>
+				<td>&nbsp;</td>
+				<td><input type="submit" value="Submit" class="btn btn-default" /></td>
+			</tr>
 		</table>
-
-		<br /> <input type="submit" value="Submit" />
 	</form>
 </body>
 </html>
