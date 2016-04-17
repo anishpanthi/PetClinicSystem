@@ -49,18 +49,24 @@ public class Owner implements Serializable {
 	private String firstname;
 	private String lastname;
 	private String phone;
+	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "ownerid")
 	private Collection<Feedback> feedbackCollection;
+	
 	@JoinColumn(name = "Address_id", referencedColumnName = "id")
 	@ManyToOne(optional = false)
 	private Address addressid;
+	
 	@JoinColumn(name = "User_id", referencedColumnName = "id")
 	@ManyToOne(optional = false)
 	private User userid;
+	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "ownerid")
 	private Collection<Appointment> appointmentCollection;
+	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "ownerid")
 	private Collection<Payment> paymentCollection;
+	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "ownerid")
 	private Collection<Pet> petCollection;
 

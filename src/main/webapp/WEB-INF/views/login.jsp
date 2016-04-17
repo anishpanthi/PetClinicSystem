@@ -7,6 +7,6 @@
 <title>Login Here!!!</title>
 </head>
 <body>
-<h1>This is the login page fucker... </h1>
+<h1>This is the login page... </h1>
 </body>
 </html>

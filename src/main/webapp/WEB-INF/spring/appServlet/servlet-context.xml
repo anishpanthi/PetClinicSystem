@@ -2,7 +2,8 @@
 <beans:beans xmlns="http://www.springframework.org/schema/mvc"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:beans="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:jpa="http://www.springframework.org/schema/data/jpa" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
@@ -28,7 +29,16 @@
 	</beans:bean>
 
 	<context:component-scan base-package="com.amt.petclinic" />
+	
 	<mvc:default-servlet-handler />
+	
+	<beans:bean id="feedbackDAO" class="com.amt.petclinic.dao.FeedbackDAO">
+		<beans:constructor-arg ref="sessionFactory" />
+	</beans:bean>
+	
+	<!-- <beans:bean id="springSecurityFilterChain" class="com.amt.petclinic.config.SpringSecurityInitializer"/> -->
+	
+	<!-- <jpa:repositories base-package="com.amt.petclinic"></jpa:repositories> -->
 
 	<beans:bean id="messageSource"
 		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
@@ -42,7 +52,7 @@
 		<beans:property name="cookieName" value="myAppLocaleCookie"></beans:property>
 		<beans:property name="cookieMaxAge" value="3600"></beans:property>
 	</beans:bean>
-	
+
 	<tx:annotation-driven transaction-manager="transactionManager" />
 	<beans:bean id="transactionManager"
 		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
@@ -53,8 +63,9 @@
 		class="org.springframework.beans.factory.config.PropertiesFactoryBean">
 		<beans:property name="properties">
 			<beans:props>
-				<beans:prop key="hibernate.hbm2ddl.auto">create</beans:prop>
-				<beans:prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</beans:prop>
+				<beans:prop key="hibernate.hbm2ddl.auto">none</beans:prop>
+				<beans:prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect
+				</beans:prop>
 				<beans:prop key="connection.pool.size">1</beans:prop>
 				<beans:prop key="hibernate.show_sql">true</beans:prop>
 				<!-- <beans:prop key="hibernate.current_session_context_class">thread</beans:prop> -->

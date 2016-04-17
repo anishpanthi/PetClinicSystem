@@ -55,6 +55,7 @@ public class Feedback implements Serializable {
 	private Owner ownerid;
 
 	public Feedback() {
+		super();
 	}
 
 	public Feedback(String firstname, String lastname, String email, String comments, Owner ownerid) {

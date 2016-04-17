@@ -16,5 +16,7 @@
 	</P>
 	<br/><br/>
 	<a href="login">Login</a>
+	<br/><br/>
+	<a href="feedback">Provide Feedback</a>
 </body>
 </html>
