@@ -2,6 +2,10 @@
 Thumbs.db
 ehthumbs.db
 
+#Class Files and JAR Files
+*.class
+*.jar
+
 # Folder config file
 Desktop.ini
 
