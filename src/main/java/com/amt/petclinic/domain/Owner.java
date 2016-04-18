@@ -6,173 +6,175 @@
 package com.amt.petclinic.domain;
 
 import java.io.Serializable;
-import java.util.Collection;
-
-import javax.persistence.CascadeType;
+import java.util.List;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author AMT
+ * @author Anish Panthi
  */
 @Entity
-/*
- * @NamedQueries({
- * 
- * @NamedQuery(name = "Owner.findAll", query = "SELECT o FROM Owner o"),
- * 
- * @NamedQuery(name = "Owner.findById", query =
- * "SELECT o FROM Owner o WHERE o.id = :id"),
- * 
- * @NamedQuery(name = "Owner.findByFirstname", query =
- * "SELECT o FROM Owner o WHERE o.firstname = :firstname"),
- * 
- * @NamedQuery(name = "Owner.findByLastname", query =
- * "SELECT o FROM Owner o WHERE o.lastname = :lastname"),
- * 
- * @NamedQuery(name = "Owner.findByPhone", query =
- * "SELECT o FROM Owner o WHERE o.phone = :phone")})
- */
 public class Owner implements Serializable {
 
-	private static final long serialVersionUID = 1L;
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
-	private String firstname;
-	private String lastname;
-	private String phone;
-	
-	@JoinColumn(name = "Address_id", referencedColumnName = "id")
-	@ManyToOne(optional = false)
-	private Address addressid;
-	
-	@JoinColumn(name = "User_id", referencedColumnName = "id")
-	@ManyToOne(optional = false)
-	private User userid;
-	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "ownerid")
-	private Collection<Appointment> appointmentCollection;
-	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "ownerid")
-	private Collection<Payment> paymentCollection;
-	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "ownerid")
-	private Collection<Pet> petCollection;
+    private static final long serialVersionUID = 1L;
+    @Id
+    private Integer id;
+    private String firstname;
+    private String lastname;
+    private String phone;
+    private String city;
+    private String housenumber;
+    private String statename;
+    private String streetnumber;
+    private String zipcode;
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @ManyToOne
+    private User userId;
+    @OneToMany(mappedBy = "ownerid")
+    private List<Appointment> appointmentList;
+    @OneToMany(mappedBy = "ownerid")
+    private List<Payment> paymentList;
+    @OneToMany(mappedBy = "ownerid")
+    private List<Pet> petList;
 
-	public Owner() {
-	}
+    public Owner() {
+    }
 
-	public Owner(Integer id) {
-		this.id = id;
-	}
+    public Owner(int id) {
+        this.id = id;
+    }
 
-	public Integer getId() {
-		return id;
-	}
+    public int getId() {
+        return id;
+    }
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	public String getFirstname() {
-		return firstname;
-	}
+    public String getFirstname() {
+        return firstname;
+    }
 
-	public void setFirstname(String firstname) {
-		this.firstname = firstname;
-	}
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
 
-	public String getLastname() {
-		return lastname;
-	}
+    public String getLastname() {
+        return lastname;
+    }
 
-	public void setLastname(String lastname) {
-		this.lastname = lastname;
-	}
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
 
-	public String getPhone() {
-		return phone;
-	}
+    public String getPhone() {
+        return phone;
+    }
 
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
 
-	public Address getAddressid() {
-		return addressid;
-	}
+    public String getCity() {
+        return city;
+    }
 
-	public void setAddressid(Address addressid) {
-		this.addressid = addressid;
-	}
+    public void setCity(String city) {
+        this.city = city;
+    }
 
-	public User getUserid() {
-		return userid;
-	}
+    public String getHousenumber() {
+        return housenumber;
+    }
 
-	public void setUserid(User userid) {
-		this.userid = userid;
-	}
+    public void setHousenumber(String housenumber) {
+        this.housenumber = housenumber;
+    }
 
-	@XmlTransient
-	public Collection<Appointment> getAppointmentCollection() {
-		return appointmentCollection;
-	}
+    public String getStatename() {
+        return statename;
+    }
 
-	public void setAppointmentCollection(Collection<Appointment> appointmentCollection) {
-		this.appointmentCollection = appointmentCollection;
-	}
+    public void setStatename(String statename) {
+        this.statename = statename;
+    }
 
-	@XmlTransient
-	public Collection<Payment> getPaymentCollection() {
-		return paymentCollection;
-	}
+    public String getStreetnumber() {
+        return streetnumber;
+    }
 
-	public void setPaymentCollection(Collection<Payment> paymentCollection) {
-		this.paymentCollection = paymentCollection;
-	}
+    public void setStreetnumber(String streetnumber) {
+        this.streetnumber = streetnumber;
+    }
 
-	@XmlTransient
-	public Collection<Pet> getPetCollection() {
-		return petCollection;
-	}
+    public String getZipcode() {
+        return zipcode;
+    }
 
-	public void setPetCollection(Collection<Pet> petCollection) {
-		this.petCollection = petCollection;
-	}
+    public void setZipcode(String zipcode) {
+        this.zipcode = zipcode;
+    }
 
-	@Override
-	public int hashCode() {
-		int hash = 0;
-		hash += (id != null ? id.hashCode() : 0);
-		return hash;
-	}
+    public User getUserId() {
+        return userId;
+    }
 
-	@Override
-	public boolean equals(Object object) {
-		// TODO: Warning - this method won't work in the case the id fields are
-		// not set
-		if (!(object instanceof Owner)) {
-			return false;
-		}
-		Owner other = (Owner) object;
-		if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-			return false;
-		}
-		return true;
-	}
+    public void setUserId(User userId) {
+        this.userId = userId;
+    }
 
-	@Override
-	public String toString() {
-		return "com.app.domain.Owner[ id=" + id + " ]";
-	}
+    public List<Appointment> getAppointmentList() {
+        return appointmentList;
+    }
 
+    public void setAppointmentList(List<Appointment> appointmentList) {
+        this.appointmentList = appointmentList;
+    }
+
+    public List<Payment> getPaymentList() {
+        return paymentList;
+    }
+
+    public void setPaymentList(List<Payment> paymentList) {
+        this.paymentList = paymentList;
+    }
+
+    public List<Pet> getPetList() {
+        return petList;
+    }
+
+    public void setPetList(List<Pet> petList) {
+        this.petList = petList;
+    }
+
+//    @Override
+//    public int hashCode() {
+//        int hash = 0;
+//        hash += (id != null ? id.hashCode() : 0);
+//        return hash;
+//    }
+//
+//    @Override
+//    public boolean equals(Object object) {
+//        // TODO: Warning - this method won't work in the case the id fields are not set
+//        if (!(object instanceof Owner)) {
+//            return false;
+//        }
+//        Owner other = (Owner) object;
+//        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+//            return false;
+//        }
+//        return true;
+//    }
+
+    @Override
+    public String toString() {
+        return "com.amt.petclinic.domain.Owner[ id=" + id + " ]";
+    }
+    
 }

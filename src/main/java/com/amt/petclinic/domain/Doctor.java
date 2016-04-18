@@ -6,170 +6,166 @@
 package com.amt.petclinic.domain;
 
 import java.io.Serializable;
-import java.util.Collection;
-
-import javax.persistence.CascadeType;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author AMT
+ * @author Anish Panthi
  */
 @Entity
-/*
- * @NamedQueries({
- * 
- * @NamedQuery(name = "Doctor.findAll", query = "SELECT d FROM Doctor d"),
- * 
- * @NamedQuery(name = "Doctor.findById", query =
- * "SELECT d FROM Doctor d WHERE d.id = :id"),
- * 
- * @NamedQuery(name = "Doctor.findByFirstname", query =
- * "SELECT d FROM Doctor d WHERE d.firstname = :firstname"),
- * 
- * @NamedQuery(name = "Doctor.findByLastname", query =
- * "SELECT d FROM Doctor d WHERE d.lastname = :lastname"),
- * 
- * @NamedQuery(name = "Doctor.findByPhone", query =
- * "SELECT d FROM Doctor d WHERE d.phone = :phone"),
- * 
- * @NamedQuery(name = "Doctor.findByEmail", query =
- * "SELECT d FROM Doctor d WHERE d.email = :email")})
- */
 public class Doctor implements Serializable {
 
-	private static final long serialVersionUID = 1L;
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
-	private String firstname;
-	private String lastname;
-	private String phone;
-	private String email;
-	@JoinColumn(name = "Address_id", referencedColumnName = "id")
-	@ManyToOne(optional = false)
-	private Address addressid;
-	@JoinColumn(name = "User_id", referencedColumnName = "id")
-	@ManyToOne(optional = false)
-	private User userid;
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "doctorid")
-	private Collection<Pet> petCollection;
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue
+    private int id;
+    private String email;
+    private String firstname;
+    private String lastname;
+    private String phone;
+    private String city;
+    private String housenumber;
+    private String statename;
+    private String streetnumber;
+    private String zipcode;
+    @JoinColumn(name = "User_id", referencedColumnName = "id")
+    @ManyToOne
+    private User userid;
+    @OneToMany(mappedBy = "doctorid")
+    private List<Pet> petList;
 
-	public Doctor() {
-	}
+    public Doctor() {
+    }
 
-	public Doctor(String firstname, String lastname, String phone, String email, Address addressid, User userid,
-			Collection<Pet> petCollection) {
-		super();
-		this.firstname = firstname;
-		this.lastname = lastname;
-		this.phone = phone;
-		this.email = email;
-		this.addressid = addressid;
-		this.userid = userid;
-		this.petCollection = petCollection;
-	}
+    public Doctor(int id) {
+        this.id = id;
+    }
 
-	public Doctor(Integer id) {
-		this.id = id;
-	}
+    public int getId() {
+        return id;
+    }
 
-	public Integer getId() {
-		return id;
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    public String getEmail() {
+        return email;
+    }
 
-	public String getFirstname() {
-		return firstname;
-	}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	public void setFirstname(String firstname) {
-		this.firstname = firstname;
-	}
+    public String getFirstname() {
+        return firstname;
+    }
 
-	public String getLastname() {
-		return lastname;
-	}
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
 
-	public void setLastname(String lastname) {
-		this.lastname = lastname;
-	}
+    public String getLastname() {
+        return lastname;
+    }
 
-	public String getPhone() {
-		return phone;
-	}
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
 
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
+    public String getPhone() {
+        return phone;
+    }
 
-	public String getEmail() {
-		return email;
-	}
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    public String getCity() {
+        return city;
+    }
 
-	public Address getAddressid() {
-		return addressid;
-	}
+    public void setCity(String city) {
+        this.city = city;
+    }
 
-	public void setAddressid(Address addressid) {
-		this.addressid = addressid;
-	}
+    public String getHousenumber() {
+        return housenumber;
+    }
 
-	public User getUserid() {
-		return userid;
-	}
+    public void setHousenumber(String housenumber) {
+        this.housenumber = housenumber;
+    }
 
-	public void setUserid(User userid) {
-		this.userid = userid;
-	}
+    public String getStatename() {
+        return statename;
+    }
 
-	@XmlTransient
-	public Collection<Pet> getPetCollection() {
-		return petCollection;
-	}
+    public void setState(String statename) {
+        this.statename = statename;
+    }
 
-	public void setPetCollection(Collection<Pet> petCollection) {
-		this.petCollection = petCollection;
-	}
+    public String getStreetnumber() {
+        return streetnumber;
+    }
 
-	@Override
-	public int hashCode() {
-		int hash = 0;
-		hash += (id != null ? id.hashCode() : 0);
-		return hash;
-	}
+    public void setStreetnumber(String streetnumber) {
+        this.streetnumber = streetnumber;
+    }
 
-	@Override
-	public boolean equals(Object object) {
-		// TODO: Warning - this method won't work in the case the id fields are
-		// not set
-		if (!(object instanceof Doctor)) {
-			return false;
-		}
-		Doctor other = (Doctor) object;
-		if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-			return false;
-		}
-		return true;
-	}
+    public String getZipcode() {
+        return zipcode;
+    }
 
-	@Override
-	public String toString() {
-		return "com.app.domain.Doctor[ id=" + id + " ]";
-	}
+    public void setZipcode(String zipcode) {
+        this.zipcode = zipcode;
+    }
+
+    public User getUserid() {
+        return userid;
+    }
+
+    public void setUserid(User userid) {
+        this.userid = userid;
+    }
+
+    public List<Pet> getPetList() {
+        return petList;
+    }
+
+    public void setPetList(List<Pet> petList) {
+        this.petList = petList;
+    }
+
+//    @Override
+//    public int hashCode() {
+//        int hash = 0;
+//        hash += (id != null ? id.hashCode() : 0);
+//        return hash;
+//    }
+//
+//    @Override
+//    public boolean equals(Object object) {
+//        // TODO: Warning - this method won't work in the case the id fields are not set
+//        if (!(object instanceof Doctor)) {
+//            return false;
+//        }
+//        Doctor other = (Doctor) object;
+//        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+//            return false;
+//        }
+//        return true;
+//    }
+
+    @Override
+    public String toString() {
+        return "com.amt.petclinic.domain.Doctor[ id=" + id + " ]";
+    }
 
 }

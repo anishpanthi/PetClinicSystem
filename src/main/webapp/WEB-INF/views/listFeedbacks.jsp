@@ -25,6 +25,8 @@
 				</tr>
 			</c:forEach>
 		</table>
+		<br/><br/>
+		<a href="/petclinic">Goto Home</a>
 	</div>
 </body>
 </html>
