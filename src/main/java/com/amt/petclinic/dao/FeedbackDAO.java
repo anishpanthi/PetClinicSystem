@@ -1,15 +1,6 @@
 package com.amt.petclinic.dao;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.hibernate.Query;
-import org.hibernate.SessionFactory;
-import org.springframework.transaction.annotation.Transactional;
-
-import com.amt.petclinic.domain.Feedback;
-
-@Transactional
+/*@Transactional
 public class FeedbackDAO {
 
 	private SessionFactory sessionFactory;
@@ -43,3 +34,4 @@ public class FeedbackDAO {
 	}
 
 }
+*/

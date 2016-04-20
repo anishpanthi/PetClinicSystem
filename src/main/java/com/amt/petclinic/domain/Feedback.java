@@ -6,10 +6,14 @@
 package com.amt.petclinic.domain;
 
 import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.validation.constraints.Pattern;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  *
@@ -18,86 +22,96 @@ import javax.persistence.Lob;
 @Entity
 public class Feedback implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue
-    private int id;
-    @Lob
-    private String comments;
-    private String email;
-    private String firstname;
-    private String lastname;
+	private static final long serialVersionUID = 1L;
+	@Id
+	@GeneratedValue
+	private int id;
+	@Lob
+	@NotEmpty(message = "Comments cannot be empty.")
+	private String comments;
 
-    public Feedback() {
-    }
+	@Pattern(regexp = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+			+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$", message = "Invalid Email Address. Email will not apper in anywhere.")
+	private String email;
 
-    public Feedback(int id) {
-        this.id = id;
-    }
+	@NotEmpty(message = "First Name cannot be empty.")
+	private String firstname;
 
-    public int getId() {
-        return id;
-    }
+	@NotEmpty(message = "Last Name cannot be empty.")
+	private String lastname;
 
-    public void setId(int id) {
-        this.id = id;
-    }
+	public Feedback() {
+	}
 
-    public String getComments() {
-        return comments;
-    }
+	public Feedback(int id) {
+		this.id = id;
+	}
 
-    public void setComments(String comments) {
-        this.comments = comments;
-    }
+	public int getId() {
+		return id;
+	}
 
-    public String getEmail() {
-        return email;
-    }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+	public String getComments() {
+		return comments;
+	}
 
-    public String getFirstname() {
-        return firstname;
-    }
+	public void setComments(String comments) {
+		this.comments = comments;
+	}
 
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
-    }
+	public String getEmail() {
+		return email;
+	}
 
-    public String getLastname() {
-        return lastname;
-    }
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
-    }
+	public String getFirstname() {
+		return firstname;
+	}
 
-//    @Override
-//    public int hashCode() {
-//        int hash = 0;
-//        hash += (id != null ? id.hashCode() : 0);
-//        return hash;
-//    }
-//
-//    @Override
-//    public boolean equals(Object object) {
-//        // TODO: Warning - this method won't work in the case the id fields are not set
-//        if (!(object instanceof Feedback)) {
-//            return false;
-//        }
-//        Feedback other = (Feedback) object;
-//        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-//            return false;
-//        }
-//        return true;
-//    }
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
+	}
 
-    @Override
-    public String toString() {
-        return "com.amt.petclinic.domain.Feedback[ id=" + id + " ]";
-    }
+	public String getLastname() {
+		return lastname;
+	}
+
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
+	}
+
+	// @Override
+	// public int hashCode() {
+	// int hash = 0;
+	// hash += (id != null ? id.hashCode() : 0);
+	// return hash;
+	// }
+	//
+	// @Override
+	// public boolean equals(Object object) {
+	// // TODO: Warning - this method won't work in the case the id fields are
+	// not set
+	// if (!(object instanceof Feedback)) {
+	// return false;
+	// }
+	// Feedback other = (Feedback) object;
+	// if ((this.id == null && other.id != null) || (this.id != null &&
+	// !this.id.equals(other.id))) {
+	// return false;
+	// }
+	// return true;
+	// }
+
+	@Override
+	public String toString() {
+		return "com.amt.petclinic.domain.Feedback[ id=" + id + " ]";
+	}
 
 }

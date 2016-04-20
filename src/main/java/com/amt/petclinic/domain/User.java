@@ -6,11 +6,14 @@
 package com.amt.petclinic.domain;
 
 import java.io.Serializable;
-import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  *
@@ -23,13 +26,20 @@ public class User implements Serializable {
     @Id
     @GeneratedValue
     private int id;
+    
+    @NotEmpty(message = "Password cannot be empty.")
     private String password;
+    
     private String userrole;
+    
+    @NotEmpty(message = "Username cannot be empty.")
     private String username;
-    @OneToMany(mappedBy = "userid")
-    private List<Doctor> doctorList;
-    @OneToMany(mappedBy = "userId")
-    private List<Owner> ownerList;
+    
+    @OneToOne(mappedBy = "user")
+    private Doctor doctor;
+    
+    @OneToOne(mappedBy = "user")
+    private Owner owner;
 
     public User() {
     }
@@ -58,7 +68,7 @@ public class User implements Serializable {
         return userrole;
     }
 
-    public void setRole(String userrole) {
+    public void setUserrole(String userrole) {
         this.userrole = userrole;
     }
 
@@ -70,20 +80,20 @@ public class User implements Serializable {
         this.username = username;
     }
 
-    public List<Doctor> getDoctorList() {
-        return doctorList;
+    public Doctor getDoctor() {
+        return doctor;
     }
 
-    public void setDoctorList(List<Doctor> doctorList) {
-        this.doctorList = doctorList;
+    public void setDoctor(Doctor doctor) {
+        this.doctor = doctor;
     }
 
-    public List<Owner> getOwnerList() {
-        return ownerList;
+    public Owner getOwner() {
+        return owner;
     }
 
-    public void setOwnerList(List<Owner> ownerList) {
-        this.ownerList = ownerList;
+    public void setOwner(Owner owner) {
+        this.owner = owner;
     }
 
 //    @Override

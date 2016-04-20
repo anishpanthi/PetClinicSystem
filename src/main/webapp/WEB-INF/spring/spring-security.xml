@@ -6,38 +6,26 @@
 	http://www.springframework.org/schema/security
 	http://www.springframework.org/schema/security/spring-security-3.2.xsd">
 
- <!-- default-target-url="/admin" -->
-
 	<http auto-config="true">
-		<intercept-url pattern="/admin**" access="ROLE_USER" />
+		<access-denied-handler error-page="/403" />
+		<intercept-url pattern="/auth/admin**" access="ROLE_ADMIN" />
+		<intercept-url pattern="/auth/owner**" access="ROLE_OWNER,ROLE_ADMIN" />
+		<intercept-url pattern="/auth/doctor**" access="ROLE_DOCTOR,ROLE_ADMIN" />
 		<form-login login-processing-url="/j_spring_security_check"
-			login-page="/login" default-target-url="/admin"
-			authentication-failure-url="/login?error" username-parameter="username"
+			login-page="/login" authentication-success-handler-ref="authSuccessHandler"
+			authentication-failure-url="/login?authFailed" username-parameter="username"
 			password-parameter="password" />
 		<logout logout-success-url="/login?logout" />
 	</http>
-	
-	<!-- <http auto-config="true" use-expressions="true">
-		<intercept-url pattern="/login*" access="permitAll" />
-		<intercept-url pattern="/**" access="isAuthenticated()" />
-		<form-login login-processing-url="/j_spring_security_check"
-			login-page="/login"
-			authentication-failure-url="/login?error" username-parameter="username"
-			password-parameter="password" 
-			authentication-success-handler-ref="myAuthenticationSuccessHandler"/>
-		<logout logout-success-url="/login?logout" />
-	</http> -->
-	
-	<!-- <beans:bean id="myAuthenticationSuccessHandler"
-        class="com.amt.petclinic.security.MySimpleUrlAuthenticationSuccessHandler" /> -->
 
 	<authentication-manager>
 		<authentication-provider>
 			<user-service>
-				<user name="anish" password="panthi" authorities="ROLE_USER" />
-				<user name="admin" password="admin" authorities="ROLE_ADMIN" />
+				<user name="doctor" password="doctor" authorities="ROLE_DOCTOR" />
+				<user name="admin" password="admin"
+					authorities="ROLE_ADMIN, ROLE_DOCTOR, ROLE_OWNER" />
+				<user name="owner" password="owner" authorities="ROLE_OWNER" />
 			</user-service>
 		</authentication-provider>
 	</authentication-manager>
-
 </beans:beans>

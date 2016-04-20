@@ -29,6 +29,7 @@ public class Payment implements Serializable {
     private Double amount;
     @Temporal(TemporalType.DATE)
     private Date paymentDate;
+    private long creditNumber;
     private String paymentMode;
     @JoinColumn(name = "Owner_id", referencedColumnName = "id")
     @ManyToOne
@@ -57,7 +58,15 @@ public class Payment implements Serializable {
         this.amount = amount;
     }
 
-    public Date getPaymentDate() {
+    public long getCreditNumber() {
+		return creditNumber;
+	}
+
+	public void setCreditNumber(long creditNumber) {
+		this.creditNumber = creditNumber;
+	}
+
+	public Date getPaymentDate() {
         return paymentDate;
     }
 

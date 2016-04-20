@@ -7,12 +7,17 @@ package com.amt.petclinic.domain;
 
 import java.io.Serializable;
 import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.validation.constraints.Pattern;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  *
@@ -21,151 +26,183 @@ import javax.persistence.OneToMany;
 @Entity
 public class Doctor implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue
-    private int id;
-    private String email;
-    private String firstname;
-    private String lastname;
-    private String phone;
-    private String city;
-    private String housenumber;
-    private String statename;
-    private String streetnumber;
-    private String zipcode;
-    @JoinColumn(name = "User_id", referencedColumnName = "id")
-    @ManyToOne
-    private User userid;
-    @OneToMany(mappedBy = "doctorid")
-    private List<Pet> petList;
+	private static final long serialVersionUID = 1L;
+	@Id
+	@GeneratedValue
+	private int id;
 
-    public Doctor() {
-    }
+//	@Pattern(regexp = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+//			+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$", message = "Invalid Email Address.")
+	private String email;
 
-    public Doctor(int id) {
-        this.id = id;
-    }
+//	@NotEmpty(message = "First Name cannot be empty.")
+	private String firstname;
 
-    public int getId() {
-        return id;
-    }
+//	@NotEmpty(message = "Last Name cannot be empty.")
+	private String lastname;
 
-    public void setId(int id) {
-        this.id = id;
-    }
+//	@NotEmpty(message = "Username cannot be empty.")
+	private String userName;
 
-    public String getEmail() {
-        return email;
-    }
+	private String phone;
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+//	@NotEmpty(message = "City cannot be empty.")
+	private String city;
 
-    public String getFirstname() {
-        return firstname;
-    }
+//	@NotEmpty(message = "House Number cannot be empty.")
+	private String housenumber;
 
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
-    }
+	private String statename;
+	
+//	@NotEmpty(message = "Street Number cannot be empty.")
+	private String streetnumber;
 
-    public String getLastname() {
-        return lastname;
-    }
+//	@NotEmpty(message = "Zip Code cannot be empty.")
+	private String zipcode;
 
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
-    }
+	@JoinColumn(name = "User_id")
+	@OneToOne(cascade = CascadeType.ALL)
+	private User user;
 
-    public String getPhone() {
-        return phone;
-    }
+	@OneToMany(mappedBy = "doctorid")
+	private List<Pet> petList;
 
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
+	public Doctor() {
+	}
 
-    public String getCity() {
-        return city;
-    }
+	public Doctor(int id) {
+		this.id = id;
+	}
 
-    public void setCity(String city) {
-        this.city = city;
-    }
+	public int getId() {
+		return id;
+	}
 
-    public String getHousenumber() {
-        return housenumber;
-    }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-    public void setHousenumber(String housenumber) {
-        this.housenumber = housenumber;
-    }
+	public String getEmail() {
+		return email;
+	}
 
-    public String getStatename() {
-        return statename;
-    }
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
-    public void setState(String statename) {
-        this.statename = statename;
-    }
+	public String getFirstname() {
+		return firstname;
+	}
 
-    public String getStreetnumber() {
-        return streetnumber;
-    }
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
+	}
 
-    public void setStreetnumber(String streetnumber) {
-        this.streetnumber = streetnumber;
-    }
+	public String getLastname() {
+		return lastname;
+	}
 
-    public String getZipcode() {
-        return zipcode;
-    }
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
+	}
 
-    public void setZipcode(String zipcode) {
-        this.zipcode = zipcode;
-    }
+	public String getUserName() {
+		return userName;
+	}
 
-    public User getUserid() {
-        return userid;
-    }
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
 
-    public void setUserid(User userid) {
-        this.userid = userid;
-    }
+	public String getPhone() {
+		return phone;
+	}
 
-    public List<Pet> getPetList() {
-        return petList;
-    }
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
 
-    public void setPetList(List<Pet> petList) {
-        this.petList = petList;
-    }
+	public String getCity() {
+		return city;
+	}
 
-//    @Override
-//    public int hashCode() {
-//        int hash = 0;
-//        hash += (id != null ? id.hashCode() : 0);
-//        return hash;
-//    }
-//
-//    @Override
-//    public boolean equals(Object object) {
-//        // TODO: Warning - this method won't work in the case the id fields are not set
-//        if (!(object instanceof Doctor)) {
-//            return false;
-//        }
-//        Doctor other = (Doctor) object;
-//        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-//            return false;
-//        }
-//        return true;
-//    }
+	public void setCity(String city) {
+		this.city = city;
+	}
 
-    @Override
-    public String toString() {
-        return "com.amt.petclinic.domain.Doctor[ id=" + id + " ]";
-    }
+	public String getHousenumber() {
+		return housenumber;
+	}
+
+	public void setHousenumber(String housenumber) {
+		this.housenumber = housenumber;
+	}
+
+	public String getStatename() {
+		return statename;
+	}
+
+	public void setStatename(String statename) {
+		this.statename = statename;
+	}
+
+	public String getStreetnumber() {
+		return streetnumber;
+	}
+
+	public void setStreetnumber(String streetnumber) {
+		this.streetnumber = streetnumber;
+	}
+
+	public String getZipcode() {
+		return zipcode;
+	}
+
+	public void setZipcode(String zipcode) {
+		this.zipcode = zipcode;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public List<Pet> getPetList() {
+		return petList;
+	}
+
+	public void setPetList(List<Pet> petList) {
+		this.petList = petList;
+	}
+
+	// @Override
+	// public int hashCode() {
+	// int hash = 0;
+	// hash += (id != null ? id.hashCode() : 0);
+	// return hash;
+	// }
+	//
+	// @Override
+	// public boolean equals(Object object) {
+	// // TODO: Warning - this method won't work in the case the id fields are
+	// not set
+	// if (!(object instanceof Doctor)) {
+	// return false;
+	// }
+	// Doctor other = (Doctor) object;
+	// if ((this.id == null && other.id != null) || (this.id != null &&
+	// !this.id.equals(other.id))) {
+	// return false;
+	// }
+	// return true;
+	// }
+
+	@Override
+	public String toString() {
+		return "com.amt.petclinic.domain.Doctor[ id=" + id + " ]";
+	}
 
 }

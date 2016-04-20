@@ -8,12 +8,12 @@ public interface FeedbackService {
 
 	public void create(Feedback feedback);
 
-	public void delete(int id);
+//	public void delete(int id);
 
 	public List<Feedback> findAll();
 
-	public void update(Feedback feedback);
+//	public void update(Feedback feedback);
 
-	public Feedback findById(int id);
+//	public Feedback findById(int id);
 
 }

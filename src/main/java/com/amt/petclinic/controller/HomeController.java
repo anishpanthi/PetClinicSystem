@@ -4,14 +4,9 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-import javax.annotation.Resource;
+import javax.validation.Valid;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.security.authentication.AnonymousAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -22,54 +17,34 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.amt.petclinic.dao.FeedbackDAO;
 import com.amt.petclinic.domain.Feedback;
+import com.amt.petclinic.service.FeedbackService;
 
-/**
- * Handles requests for the application home page.
- */
 @Controller
 public class HomeController {
 
-	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+	@Autowired
+	private FeedbackService feedbackService;
 
-	@Resource
-	private FeedbackDAO feedbackDAO;
-
-	/**
-	 * Simply selects the home view to render by returning its name.
-	 */
 	@RequestMapping(value = { "/", "/welcome**" }, method = RequestMethod.GET)
-	// public ModelAndView home(Locale locale, Model model) {
 	public ModelAndView home(Locale locale) {
-		// logger.info("Welcome home! The client locale is {}.", locale);
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
 		String formattedDate = dateFormat.format(date);
-		// model.addAttribute("serverTime", formattedDate);
 
 		ModelAndView model = new ModelAndView();
 		model.addObject("serverTime", formattedDate);
-		model.addObject("title", "Spring Security Hello World");
-		model.addObject("message", "This is welcome page!");
 		model.setViewName("home");
 		return model;
-
-		// return "home";
 	}
 
-	/*
-	 * @RequestMapping(value = "/login", method = RequestMethod.GET) public
-	 * String loginPage(Model model) { return "login"; }
-	 */
-
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public ModelAndView login(@RequestParam(value = "error", required = false) String error,
+	public ModelAndView login(@RequestParam(value = "authFailed", required = false) String authFailed,
 			@RequestParam(value = "logout", required = false) String logout) {
 
 		ModelAndView model = new ModelAndView();
-		if (error != null) {
-			model.addObject("error", "Invalid username and password!");
+		if (authFailed != null) {
+			model.addObject("authFailed", "Invalid username and password!");
 		}
 
 		if (logout != null) {
@@ -78,7 +53,6 @@ public class HomeController {
 		model.setViewName("login");
 
 		return model;
-
 	}
 
 	@RequestMapping(value = "/feedback", method = RequestMethod.GET)
@@ -88,36 +62,47 @@ public class HomeController {
 	}
 
 	@RequestMapping(value = "/feedback", method = RequestMethod.POST)
-	public String submitForm(@ModelAttribute("feedback") Feedback feedback, BindingResult resultFeedback, ModelMap m) {
-		feedbackDAO.create(feedback);
-		return "redirect:/listFeedbacks";
+	public String submitForm(@ModelAttribute("feedback") @Valid Feedback feedback, BindingResult resultFeedback,
+			ModelMap m) {
+		String view = "redirect:/listFeedbacks";
+		if (!resultFeedback.hasErrors()) {
+			feedbackService.create(feedback);
+		} else {
+			view = "feedback";
+		}
+		return view;
 	}
 
 	@RequestMapping(value = "/listFeedbacks", method = RequestMethod.GET)
 	public String listAllFeedbacks(Model model) {
-		model.addAttribute("feedbacks", feedbackDAO.findAll());
+		model.addAttribute("feedbacks", feedbackService.findAll());
 		return "listFeedbacks";
 	}
 
-	@RequestMapping(value = "/admin**", method = RequestMethod.GET)
-	public ModelAndView adminPage() {
-
-		ModelAndView model = new ModelAndView();
-		model.addObject("title", "Spring Security Custom Login Form");
-		model.addObject("message", "This is protected page!");
-		model.setViewName("admin");
-
-		return model;
-
+	@RequestMapping(value = "/auth", method = RequestMethod.GET)
+	public String afterLoginPage() {
+		return "auth";
 	}
 
-	/*
-	 * @RequestMapping(value = "/dba**", method = RequestMethod.GET) public
-	 * ModelAndView dbaPage() { ModelAndView model = new ModelAndView();
-	 * model.addObject("title", "Spring Security Hello World");
-	 * model.addObject("message", "This is protected page - Database Page!");
-	 * model.setViewName("admin"); return model; }
-	 */
+	@RequestMapping(value = "/auth/admin", method = RequestMethod.GET)
+	public String afterAuthAdminPage() {
+		return "adminAuth";
+	}
+
+	@RequestMapping(value = "/auth/doctor", method = RequestMethod.GET)
+	public String afterAuthDoctorPage() {
+		return "doctorAuth";
+	}
+
+	@RequestMapping(value = "/auth/owner", method = RequestMethod.GET)
+	public String afterAuthOwnerPage() {
+		return "ownerAuth";
+	}
+
+	@RequestMapping(value = "/403", method = RequestMethod.GET)
+	public String get403denied() {
+		return "redirect:/login?authFailed";
+	}
 
 	// for 403 access denied page
 	/*

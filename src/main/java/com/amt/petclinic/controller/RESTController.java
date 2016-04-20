@@ -3,33 +3,37 @@ package com.amt.petclinic.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.annotation.Resource;
-
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.amt.petclinic.dao.FeedbackDAO;
+import com.amt.petclinic.domain.Doctor;
 import com.amt.petclinic.domain.Feedback;
+import com.amt.petclinic.service.DoctorService;
+import com.amt.petclinic.service.FeedbackService;
 import com.amt.petclinic.test.Country;
 
+@Component
 @RestController
-public class CountryControllerREST {
+public class RESTController {
 	
-	@Resource
-	private FeedbackDAO feedbackDAO;
+	@Autowired
+	private FeedbackService feedbackService;
+	
+	@Autowired
+	private DoctorService doctorService;
 
-	@RequestMapping(value = "/api/getAllCountries", method = RequestMethod.GET, headers = "Accept=application/json")
-	public List<Country> getCountries() {
-		List<Country> listOfCountries = new ArrayList<Country>();
-		listOfCountries = createCountryList();
-		return listOfCountries;
-	}
-	
 	@RequestMapping(value="/api/getAllComments", method=RequestMethod.GET, headers="Accept=application/json")
 	public List<Feedback> getAllFeedbacks(){
-		return feedbackDAO.findAll();
+		return feedbackService.findAll();
+	}
+	
+	@RequestMapping(value="/api/getAllDoctors", method=RequestMethod.GET, headers="Accept=application/json")
+	public List<Doctor> getAllDoctors(){
+		return doctorService.findAll();
 	}
 
 	@RequestMapping(value = "/api/getCountries/{id}", method = RequestMethod.GET, headers = "Accept=application/json")
