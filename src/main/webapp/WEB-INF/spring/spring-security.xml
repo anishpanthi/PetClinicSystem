@@ -9,8 +9,8 @@
 	<http auto-config="true">
 		<access-denied-handler error-page="/403" />
 		<intercept-url pattern="/auth/admin**" access="ROLE_ADMIN" />
-		<intercept-url pattern="/auth/owner**" access="ROLE_OWNER,ROLE_ADMIN" />
-		<intercept-url pattern="/auth/doctor**" access="ROLE_DOCTOR,ROLE_ADMIN" />
+		<intercept-url pattern="/auth/owner**" access="ROLE_OWNER" />
+		<intercept-url pattern="/auth/doctor**" access="ROLE_DOCTOR" />
 		<form-login login-processing-url="/j_spring_security_check"
 			login-page="/login" authentication-success-handler-ref="authSuccessHandler"
 			authentication-failure-url="/login?authFailed" username-parameter="username"
@@ -18,28 +18,21 @@
 		<logout logout-success-url="/login?logout" />
 	</http>
 
-	<beans:bean id="dataSource"
-		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<beans:property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<beans:property name="url" value="jdbc:mysql://localhost/petclinic" />
-		<beans:property name="username" value="root" />
-		<beans:property name="password" value="1234567890" />
-	</beans:bean>
+	<!-- <beans:bean id="dataSource" -->
+	<!-- class="org.springframework.jdbc.datasource.DriverManagerDataSource"> -->
+	<!-- <beans:property name="driverClassName" value="com.mysql.jdbc.Driver" 
+		/> -->
+	<!-- <beans:property name="url" value="jdbc:mysql://localhost/petclinic" 
+		/> -->
+	<!-- <beans:property name="username" value="root" /> -->
+	<!-- <beans:property name="password" value="1234567890" /> -->
+	<!-- </beans:bean> -->
 
 	<authentication-manager>
 		<authentication-provider>
-			<!-- <user-service> -->
-			<!-- <user name="doctor" password="doctor" authorities="ROLE_DOCTOR" /> -->
-			<!-- <user name="admin" password="admin" authorities="ROLE_ADMIN" /> -->
-			<!-- <user name="owner" password="owner" authorities="ROLE_OWNER" /> -->
-			<!-- </user-service> -->
-
 			<jdbc-user-service data-source-ref="dataSource"
-
-				users-by-username-query="select username, password from user where username=?"
-
-				authorities-by-username-query="select username, userrole from user where username=?" />
-
+				users-by-username-query="select username,password, 1 enabled from user where username=?"
+				authorities-by-username-query="select username,userrole authority from user where username=?" />
 		</authentication-provider>
 	</authentication-manager>
 </beans:beans>
