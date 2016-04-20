@@ -6,4 +6,5 @@ import com.amt.petclinic.domain.Doctor;
 
 public interface DoctorRepository extends JpaRepository<Doctor, Integer>{
 
+	Doctor findByUserName(String username);
 }

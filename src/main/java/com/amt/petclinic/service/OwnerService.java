@@ -15,5 +15,7 @@ public interface OwnerService {
 	public void update(Owner owner);
 
 	public Owner findById(int id);
+	
+	public Owner findByUsername(String username);
 
 }

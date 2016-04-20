@@ -27,31 +27,33 @@ public class Owner implements Serializable {
 	@Id
 	@GeneratedValue
 	private int id;
-	
-//	@NotEmpty(message = "First Name cannot be empty.")
+
+	// @NotEmpty(message = "First Name cannot be empty.")
 	private String firstname;
-	
-//	@NotEmpty(message = "Last Name cannot be empty.")
+
+	// @NotEmpty(message = "Last Name cannot be empty.")
 	private String lastname;
-	
-//	@NotEmpty(message = "Username cannot be empty.")
+
+	// @NotEmpty(message = "Username cannot be empty.")
 	private String userName;
 	private String phone;
-	
-//	@NotEmpty(message = "City cannot be empty.")
+
+	private String email;
+
+	// @NotEmpty(message = "City cannot be empty.")
 	private String city;
-	
-//	@NotEmpty(message = "House Number cannot be empty.")
+
+	// @NotEmpty(message = "House Number cannot be empty.")
 	private String housenumber;
-	
+
 	private String statename;
-	
-//	@NotEmpty(message = "Street Number cannot be empty.")
+
+	// @NotEmpty(message = "Street Number cannot be empty.")
 	private String streetnumber;
-	
-//	@NotEmpty(message = "Zip Code cannot be empty.")
+
+	// @NotEmpty(message = "Zip Code cannot be empty.")
 	private String zipcode;
-	
+
 	@JoinColumn(name = "user_id")
 	@OneToOne(cascade = CascadeType.ALL)
 	private User user;
@@ -95,14 +97,14 @@ public class Owner implements Serializable {
 	public void setLastname(String lastname) {
 		this.lastname = lastname;
 	}
-	
-	public String getUserName(){
-    	return userName;
-    }
 
-    public void setUserName(String userName){
-    	this.userName = userName;
-    }
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
 
 	public String getPhone() {
 		return phone;
@@ -110,6 +112,14 @@ public class Owner implements Serializable {
 
 	public void setPhone(String phone) {
 		this.phone = phone;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getCity() {

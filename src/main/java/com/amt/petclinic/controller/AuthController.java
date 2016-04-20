@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.amt.petclinic.service.AppointmentService;
 import com.amt.petclinic.service.DoctorService;
-import com.amt.petclinic.service.FeedbackService;
 import com.amt.petclinic.service.OwnerService;
 
 @Controller

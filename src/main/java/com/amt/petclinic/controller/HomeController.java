@@ -4,9 +4,12 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -17,14 +20,26 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.amt.petclinic.domain.Doctor;
 import com.amt.petclinic.domain.Feedback;
+import com.amt.petclinic.domain.Owner;
+import com.amt.petclinic.service.DoctorService;
 import com.amt.petclinic.service.FeedbackService;
+import com.amt.petclinic.service.OwnerService;
 
 @Controller
 public class HomeController {
 
 	@Autowired
 	private FeedbackService feedbackService;
+	
+	@Autowired
+	private DoctorService doctorService;
+	
+	@Autowired
+	private OwnerService ownerService;
+	
+	HttpSession session = null;
 
 	@RequestMapping(value = { "/", "/welcome**" }, method = RequestMethod.GET)
 	public ModelAndView home(Locale locale) {
@@ -90,12 +105,23 @@ public class HomeController {
 	}
 
 	@RequestMapping(value = "/auth/doctor", method = RequestMethod.GET)
-	public String afterAuthDoctorPage() {
+	public String afterAuthDoctorPage(Model model) {
+		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String username = user.getUsername();
+		Doctor doctor = doctorService.findByUsername(username);
+		System.out.println("Username: "+doctor.getUserName());
+		System.out.println("First Name: "+doctor.getFirstname());
+		System.out.println("Last Name: "+doctor.getLastname());
+		model.addAttribute("doctor", doctor);
 		return "doctorAuth";
 	}
 
 	@RequestMapping(value = "/auth/owner", method = RequestMethod.GET)
-	public String afterAuthOwnerPage() {
+	public String afterAuthOwnerPage(Model model) {
+		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String username = user.getUsername();
+		Owner owner = ownerService.findByUsername(username);
+		model.addAttribute(owner);
 		return "ownerAuth";
 	}
 

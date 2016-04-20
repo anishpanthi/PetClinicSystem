@@ -44,4 +44,9 @@ public class OwnerServiceImpl implements OwnerService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public Owner findByUsername(String username) {
+		return ownerRepository.findByUserName(username);
+	}
 }

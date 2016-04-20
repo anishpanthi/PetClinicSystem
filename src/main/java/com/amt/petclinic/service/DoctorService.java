@@ -15,5 +15,7 @@ public interface DoctorService {
 	public void update(Doctor doctor);
 
 	public Doctor findById(int id);
+	
+	public Doctor findByUsername(String username);
 
 }

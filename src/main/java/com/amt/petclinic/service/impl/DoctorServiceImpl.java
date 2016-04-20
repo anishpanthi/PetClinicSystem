@@ -12,8 +12,8 @@ import com.amt.petclinic.service.DoctorService;
 
 @Component
 @Transactional
-public class DoctorServiceImpl implements DoctorService{
-	
+public class DoctorServiceImpl implements DoctorService {
+
 	@Autowired
 	private DoctorRepository doctorRepository;
 
@@ -30,18 +30,24 @@ public class DoctorServiceImpl implements DoctorService{
 	@Override
 	public void delete(int id) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void update(Doctor doctor) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public Doctor findById(int id) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public Doctor findByUsername(String username) {
+		// TODO Auto-generated method stub
+		return doctorRepository.findByUserName(username);
 	}
 }
