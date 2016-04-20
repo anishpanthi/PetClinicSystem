@@ -18,14 +18,28 @@
 		<logout logout-success-url="/login?logout" />
 	</http>
 
+	<beans:bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<beans:property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<beans:property name="url" value="jdbc:mysql://localhost/petclinic" />
+		<beans:property name="username" value="root" />
+		<beans:property name="password" value="1234567890" />
+	</beans:bean>
+
 	<authentication-manager>
 		<authentication-provider>
-			<user-service>
-				<user name="doctor" password="doctor" authorities="ROLE_DOCTOR" />
-				<user name="admin" password="admin"
-					authorities="ROLE_ADMIN, ROLE_DOCTOR, ROLE_OWNER" />
-				<user name="owner" password="owner" authorities="ROLE_OWNER" />
-			</user-service>
+			<!-- <user-service> -->
+			<!-- <user name="doctor" password="doctor" authorities="ROLE_DOCTOR" /> -->
+			<!-- <user name="admin" password="admin" authorities="ROLE_ADMIN" /> -->
+			<!-- <user name="owner" password="owner" authorities="ROLE_OWNER" /> -->
+			<!-- </user-service> -->
+
+			<jdbc-user-service data-source-ref="dataSource"
+
+				users-by-username-query="select username, password from user where username=?"
+
+				authorities-by-username-query="select username, userrole from user where username=?" />
+
 		</authentication-provider>
 	</authentication-manager>
 </beans:beans>
