@@ -31,9 +31,9 @@ public class Payment implements Serializable {
     private Date paymentDate;
     private long creditNumber;
     private String paymentMode;
-    @JoinColumn(name = "Owner_id", referencedColumnName = "id")
+    @JoinColumn(name = "Owner_id")
     @ManyToOne
-    private Owner ownerid;
+    private Owner owner;
 
     public Payment() {
     }
@@ -82,12 +82,12 @@ public class Payment implements Serializable {
         this.paymentMode = paymentMode;
     }
 
-    public Owner getOwnerid() {
-        return ownerid;
+    public Owner getOwner() {
+        return owner;
     }
 
-    public void setOwnerid(Owner ownerid) {
-        this.ownerid = ownerid;
+    public void setOwner(Owner owner) {
+        this.owner = owner;
     }
 
 //    @Override

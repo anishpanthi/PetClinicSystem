@@ -58,10 +58,10 @@ public class Owner implements Serializable {
 	@OneToOne(cascade = CascadeType.ALL)
 	private User user;
 
-	@OneToMany(mappedBy = "ownerid")
+	@OneToMany(mappedBy = "owner")
 	private List<Appointment> appointmentList;
 
-	@OneToMany(mappedBy = "ownerid")
+	@OneToMany(mappedBy = "owner")
 	private List<Payment> paymentList;
 
 	@OneToMany(mappedBy = "ownerid")

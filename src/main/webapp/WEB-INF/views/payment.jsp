@@ -28,12 +28,12 @@
 	src="<c:url value="/resources/js/picker.time.js" />"></script>
 <script type="text/javascript"
 	src="<c:url value="/resources/js/customdate.js" />"></script>
-<title>Fill Payment Details</title>
+<title>AMT - Pet Clinic System</title>
 </head>
 <body>
 
 	<div align="center">
-		<h1>Please Complete all the fields!</h1>
+		<h1>Please Make a Payment</h1>
 		<form action="payment" method="post">
 			<table border="0">
 				<tr>
@@ -50,20 +50,21 @@
 				</tr>
 				<tr>
 					<td><label>Payment Modes:</label></td>
-				<td><form:select path="paymentForm.paymentMode" class="form-control">
-						<form:option value="NONE">Select Payment Mode:</form:option>
-						<c:forEach items="${modes}" var="mode">
-							<form:option value="${mode}">${mode}</form:option>
-						</c:forEach>
-					</form:select></td>
+					<td><form:select path="paymentForm.paymentMode"
+							class="form-control">
+							<form:option value="NONE">Select Payment Mode:</form:option>
+							<c:forEach items="${modes}" var="mode">
+								<form:option value="${mode}">${mode}</form:option>
+							</c:forEach>
+						</form:select></td>
 				</tr>
 
 				<tr>
-					<spring:bind path="paymentForm.ownerid">
+					<spring:bind path="owner.id">
 						<td><label for="ownerid">&nbsp;&nbsp; Owner
 								Id:&nbsp;&nbsp;</label></td>
-						<td><form:input path="paymentForm.ownerid"
-								class="form-control" id="ownerid" /></td>
+						<td><form:input path="owner.id" value="${owner.id}"
+								class="form-control" id="owner" disabled="true" /></td>
 					</spring:bind>
 				</tr>
 				<tr>

@@ -8,10 +8,10 @@
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-<title>payment</title>
+<title>AMT - Pet Clinic System</title>
 </head>
 <body>
-	<h1 align="center">Customer payment information</h1>
+	<h1 align="center">Customer Payment Information</h1>
 	<div class="container">
 		<table class="table table-striped">
 			<th>Credit Number</th>
@@ -28,9 +28,7 @@
 					<td>${pay.amount}</td>
 				</tr>
 			</c:forEach>
-
 		</table>
-		<br /> <br /> <a href="/petclinic">Goto Home</a>
 	</div>
 </body>
 </html>

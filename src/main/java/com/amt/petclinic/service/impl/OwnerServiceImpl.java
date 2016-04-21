@@ -29,20 +29,18 @@ public class OwnerServiceImpl implements OwnerService {
 
 	@Override
 	public void delete(int id) {
-		// TODO Auto-generated method stub
-
+		ownerRepository.delete(id);
 	}
 
 	@Override
-	public void update(Owner owner) {
-		// TODO Auto-generated method stub
-
+	public void update(int id, Owner owner) {
+		owner.setId(id);
+		ownerRepository.save(owner);
 	}
 
 	@Override
 	public Owner findById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		return ownerRepository.findOne(id);
 	}
 
 	@Override

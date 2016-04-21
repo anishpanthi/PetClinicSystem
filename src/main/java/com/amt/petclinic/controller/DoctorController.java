@@ -62,7 +62,6 @@ public class DoctorController {
 	@RequestMapping(value = "/auth/admin/listDoctors/edit/{id}", method = RequestMethod.GET)
 	public String editDoctorsByAdmin(@PathVariable("id") int id, Model model) {
 		model.addAttribute("editDoctor", doctorService.findById(id));
-		model.addAttribute("editUser",doc)
 		return "editDoctor";
 	}
 

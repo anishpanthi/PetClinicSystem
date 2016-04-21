@@ -32,9 +32,9 @@ public class Appointment implements Serializable {
     @Lob
     private String reason;
     private String time;
-    @JoinColumn(name = "Owner_id", referencedColumnName = "id")
+    @JoinColumn(name = "Owner_id")
     @ManyToOne
-    private Owner ownerid;
+    private Owner owner;
 
     public Appointment() {
     }
@@ -75,12 +75,12 @@ public class Appointment implements Serializable {
         this.time = time;
     }
 
-    public Owner getOwnerid() {
-        return ownerid;
+    public Owner getOwner() {
+        return owner;
     }
 
-    public void setOwnerid(Owner ownerid) {
-        this.ownerid = ownerid;
+    public void setOwner(Owner owner) {
+        this.owner = owner;
     }
 //
 //    @Override

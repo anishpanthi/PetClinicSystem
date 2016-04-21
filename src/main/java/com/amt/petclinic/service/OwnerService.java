@@ -12,7 +12,7 @@ public interface OwnerService {
 
 	public List<Owner> findAll();
 
-	public void update(Owner owner);
+	public void update(int id, Owner owner);
 
 	public Owner findById(int id);
 	

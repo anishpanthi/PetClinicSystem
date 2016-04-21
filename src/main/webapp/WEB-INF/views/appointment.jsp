@@ -25,7 +25,7 @@
 					<td><label for="day">&nbsp;&nbsp;Appointment
 							Day:&nbsp;&nbsp; </label></td>
 					<td><form:input path="appointmentForm.date"
-							class="form-control" id="time" /></td>
+							class="form-control" id="date" /></td>
 				</spring:bind>
 			</tr>
 			<tr>

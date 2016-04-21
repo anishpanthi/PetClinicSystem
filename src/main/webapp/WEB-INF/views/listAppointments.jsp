@@ -8,7 +8,7 @@
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-<title>Appointment</title>
+<title>AMT - Pet Clinic System</title>
 </head>
 <body>
 	<h1 align="center">Pet Appointment Information</h1>
@@ -17,13 +17,16 @@
 			<th>Appointment Date</th>
 			<th>Appointment Time</th>
 			<th>Appointment Reason</th>
-
+			<th colspan=2>Action</th>
 			<c:forEach var="appointment" items="${appointments}">
 				<tr>
 					<td>${appointment.date}</td>
 					<td>${appointment.time}</td>
 					<td>${appointment.reason}</td>
-
+					<td><a href="listAppointments/edit/${appointment.id}"
+						class="btn btn-primary">Update</a></td>
+					<td><a href="listAppointments/delete/${appointment.id}"
+						class="btn btn-danger">Delete</a></td>
 				</tr>
 			</c:forEach>
 		</table>

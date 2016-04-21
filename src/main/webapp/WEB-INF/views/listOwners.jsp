@@ -8,10 +8,10 @@
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-<title>Feedbacks</title>
+<title>Amt - Pet Clinic System</title>
 </head>
 <body>
-	<h1 align="center">Customer Feedbacks</h1>
+	<h1 align="center">List Of Owners</h1>
 	<div class="container">
 		<table class="table table-striped">
 			<th>First Name</th>
@@ -21,7 +21,7 @@
 			<th>State Name</th>
 			<th>Street Number</th>
 			<th>Zip Code</th>
-			<!-- 			<th> Pet List</th>		 -->
+			<th colspan=2>Action</th>
 			<c:forEach var="owner" items="${owners}">
 				<tr>
 					<td>${owner.firstname}</td>
@@ -31,10 +31,13 @@
 					<td>${owner.statename}</td>
 					<td>${owner.streetnumber}</td>
 					<td>${owner.zipcode}</td>
+					<td><a href="listOwners/edit/${owner.id}"
+						class="btn btn-primary">Update</a></td>
+					<td><a href="listOwners/delete/${owner.id}"
+						class="btn btn-danger">Delete</a></td>
 				</tr>
 			</c:forEach>
 		</table>
-		<br /> <br /> <a href="/petclinic">Goto Home</a>
 	</div>
 </body>
 </html>

@@ -172,8 +172,7 @@ body, html {
 								</table>
 
 								<a href="owner/appointment" class="btn btn-primary">Make an
-									Appointment</a> <a href="owner/payment" class="btn btn-primary">Make
-									a Payment</a>
+									Appointment</a> 
 							</div>
 						</div>
 					</div>
