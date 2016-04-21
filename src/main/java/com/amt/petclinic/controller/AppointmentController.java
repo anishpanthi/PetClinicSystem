@@ -39,9 +39,7 @@ public class AppointmentController {
 		Owner owner = ownerService.findByUsername(username);
 
 		appointment.setOwner(owner);
-		System.out.println("apointment id before:: " + appointment.getId());
 		appointmentService.create(appointment);
-		System.out.println("apointment id after:: " + appointment.getId());
 		return "redirect:/auth/owner/payment";
 	}
 }

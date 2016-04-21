@@ -172,8 +172,7 @@ body, html {
 									</tbody>
 								</table>
 
-								<a href="petclinic" class="btn btn-primary">Home</a> <a
-									href="doctor/listAppointments" class="btn btn-primary">Appointments</a>
+								<a href="doctor/listAppointments" class="btn btn-primary">View Appointments</a>
 							</div>
 						</div>
 					</div>

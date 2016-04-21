@@ -11,8 +11,28 @@
 <title>Amt - Pet Clinic System</title>
 </head>
 <body>
+	<div class="container">
+		<c:url value="/j_spring_security_logout" var="logoutUrl" />
+		<form action="${logoutUrl}" method="post" id="logoutForm">
+			<input type="hidden" name="${_csrf.parameterName}"
+				value="${_csrf.token}" />
+		</form>
+		<script>
+			function formSubmit() {
+				document.getElementById("logoutForm").submit();
+			}
+		</script>
+	</div>
 	<h1 align="center">List Of Owners</h1>
 	<div class="container">
+		<div class="col-md-5  toppad  pull-right col-md-offset-3 ">
+			<c:if test="${pageContext.request.userPrincipal.name != null}">
+				<p class=" text-info">
+					Welcome : ${pageContext.request.userPrincipal.name} | <a
+						href="javascript:formSubmit()"> Logout</a>
+				</p>
+			</c:if>
+		</div>
 		<table class="table table-striped">
 			<th>First Name</th>
 			<th>Last Name</th>

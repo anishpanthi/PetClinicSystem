@@ -37,7 +37,6 @@ public class PaymentController {
 		List<String> paymentModes = new ArrayList<String>();
 		paymentModes.add("VISA");
 		paymentModes.add("CREDIT");
-		paymentModes.add("PAYPAL");
 		paymentModes.add("MASTERCARD");
 		model.addAttribute("modes", paymentModes);
 		model.addAttribute("paymentForm", new Payment());

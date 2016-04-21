@@ -142,7 +142,8 @@ body, html {
 <body onload='document.loginForm.username.focus();'>
 	<div class="container">
 		<div class="card card-container">
-			<img id="profile-img" class="profile-img-card"
+			<a href="/petclinic">Goto Home</a> <img id="profile-img"
+				class="profile-img-card"
 				src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
 			<p id="profile-name" class="profile-name-card"></p>
 			<c:if test="${not empty authFailed}">
@@ -157,13 +158,16 @@ body, html {
 				class="form-signin">
 				<span id="reauth-email" class="reauth-email"></span>
 				<hr class="colorgraph">
-				<br> 
-				<input type='text' name='username' class="form-control" placeholder="Enter Username" required autofocus /> 
-				<input type='password' name='password' class="form-control" placeholder="Enter Password" required /> 
-				<input name="submit" type="submit" value="Login" class="btn btn-lg btn-primary btn-block btn-signin" /> 
-				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+				<br> <input type='text' name='username' class="form-control"
+					placeholder="Enter Username" required autofocus /> <input
+					type='password' name='password' class="form-control"
+					placeholder="Enter Password" required /> <input name="submit"
+					type="submit" value="Login"
+					class="btn btn-lg btn-primary btn-block btn-signin" /> <input
+					type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 			</form>
 		</div>
+
 	</div>
 </body>
 </html>

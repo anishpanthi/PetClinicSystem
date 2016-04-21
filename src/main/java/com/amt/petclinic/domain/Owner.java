@@ -16,6 +16,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  *
  * @author Anish Panthi
@@ -24,6 +26,8 @@ import javax.persistence.OneToOne;
 public class Owner implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+	
+	@JsonIgnore
 	@Id
 	@GeneratedValue
 	private int id;
@@ -35,6 +39,7 @@ public class Owner implements Serializable {
 	private String lastname;
 
 	// @NotEmpty(message = "Username cannot be empty.")
+	@JsonIgnore
 	private String userName;
 	private String phone;
 
@@ -54,16 +59,20 @@ public class Owner implements Serializable {
 	// @NotEmpty(message = "Zip Code cannot be empty.")
 	private String zipcode;
 
+	@JsonIgnore
 	@JoinColumn(name = "user_id")
 	@OneToOne(cascade = CascadeType.ALL)
 	private User user;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "owner")
 	private List<Appointment> appointmentList;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "owner")
 	private List<Payment> paymentList;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "ownerid")
 	private List<Pet> petList;
 

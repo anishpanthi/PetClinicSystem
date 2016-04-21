@@ -15,9 +15,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.validation.constraints.Pattern;
 
-import org.hibernate.validator.constraints.NotEmpty;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
  *
@@ -27,6 +26,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class Doctor implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+	@JsonIgnore
 	@Id
 	@GeneratedValue
 	private int id;
@@ -42,6 +42,7 @@ public class Doctor implements Serializable {
 	private String lastname;
 
 //	@NotEmpty(message = "Username cannot be empty.")
+	@JsonIgnore
 	private String userName;
 
 	private String phone;
@@ -60,10 +61,12 @@ public class Doctor implements Serializable {
 //	@NotEmpty(message = "Zip Code cannot be empty.")
 	private String zipcode;
 
+	@JsonIgnore
 	@JoinColumn(name = "User_id")
 	@OneToOne(cascade = CascadeType.ALL)
 	private User user;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "doctorid")
 	private List<Pet> petList;
 

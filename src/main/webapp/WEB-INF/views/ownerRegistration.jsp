@@ -45,7 +45,7 @@
 					</tr>
 					<tr>
 						<spring:bind path="ownerForm.email">
-							<td>Phone Number:</td>
+							<td>Email:</td>
 							<td><form:input path="ownerForm.email" class="form-control" /></td>
 							<%-- 							<td><form:errors path="ownerForm.email" --%>
 							<%-- 									cssStyle="color: #ff0000;" class="alert alert-danger" /></td> --%>
