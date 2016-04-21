@@ -24,8 +24,8 @@
 								Name:&nbsp;&nbsp;</label></td>
 						<td><form:input path="doctorForm.firstname"
 								class="form-control" id="firstname" /></td>
-<%-- 						<td><form:errors path="doctorForm.firstname" --%>
-<%-- 								cssStyle="color: #ff0000;" class="alert alert-danger" /></td> --%>
+						<td><form:errors path="doctorForm.firstname" 
+								cssStyle="color: #ff0000;" class="alert alert-danger" /></td> 
 					</spring:bind>
 				</tr>
 				<tr>
@@ -37,8 +37,8 @@
 								Name:&nbsp;&nbsp;</label></td>
 						<td><form:input path="doctorForm.lastname"
 								class="form-control" id="lastname" /></td>
-<%-- 						<td><form:errors path="doctorForm.lastname" --%>
-<%-- 								cssStyle="color: #ff0000;" class="alert alert-danger" /></td> --%>
+ 						<td><form:errors path="doctorForm.lastname" 
+ 								cssStyle="color: #ff0000;" class="alert alert-danger" /></td> 
 					</spring:bind>
 				</tr>
 				<tr>
@@ -51,8 +51,8 @@
 								Email:&nbsp;&nbsp;</label></td>
 						<td><form:input path="doctorForm.email" class="form-control"
 								id="email" /></td>
-<%-- 						<td><form:errors path="doctorForm.email" --%>
-<%-- 								cssStyle="color: #ff0000;" class="alert alert-danger" /></td> --%>
+ 						<td><form:errors path="doctorForm.email" 
+								cssStyle="color: #ff0000;" class="alert alert-danger" /></td> 
 					</spring:bind>
 				</tr>
 				<tr>
@@ -64,8 +64,8 @@
 								Username:&nbsp;&nbsp;</label></td>
 						<td><form:input path="userForm.username" class="form-control"
 								id="username" /></td>
-<%-- 						<td><form:errors path="userForm.username" --%>
-<%-- 								cssStyle="color: #ff0000;" class="alert alert-danger" /></td> --%>
+ 						<td><form:errors path="userForm.username" 
+								cssStyle="color: #ff0000;" class="alert alert-danger" /></td>
 					</spring:bind>
 				</tr>
 				<tr>
@@ -78,8 +78,8 @@
 								PassWord:&nbsp;&nbsp;</label></td>
 						<td><form:password path="userForm.password"
 								class="form-control" id="password" /></td>
-<%-- 						<td><form:errors path="userForm.password" --%>
-<%-- <%-- 								cssStyle="color: #ff0000;" class="alert alert-danger" /></td> --%>
+ 						<td><form:errors path="userForm.password" 
+ 								cssStyle="color: #ff0000;" class="alert alert-danger" /></td> 
 					</spring:bind>
 				</tr>
 				<tr>
@@ -90,8 +90,8 @@
 						<td><label for="city">&nbsp;&nbsp; City:&nbsp;&nbsp;</label></td>
 						<td><form:input path="doctorForm.city" class="form-control"
 								id="city" /></td>
-<%-- 						<td><form:errors path="doctorForm.city" --%>
-<%-- 								cssStyle="color: #ff0000;" class="alert alert-danger" /></td> --%>
+ 						<td><form:errors path="doctorForm.city" 
+ 								cssStyle="color: #ff0000;" class="alert alert-danger" /></td> 
 					</spring:bind>
 				</tr>
 				<tr>
@@ -103,8 +103,8 @@
 								Number:&nbsp;&nbsp;</label></td>
 						<td><form:input path="doctorForm.housenumber"
 								class="form-control" id="housenumber" /></td>
-<%-- 						<td><form:errors path="doctorForm.housenumber" --%>
-<%-- 								cssStyle="color: #ff0000;" class="alert alert-danger" /></td> --%>
+ 						<td><form:errors path="doctorForm.housenumber" 
+ 								cssStyle="color: #ff0000;" class="alert alert-danger" /></td> 
 					</spring:bind>
 				</tr>
 				<tr>
@@ -116,8 +116,8 @@
 								State:&nbsp;&nbsp;</label></td>
 						<td><form:input path="doctorForm.statename"
 								class="form-control" id="statename" /></td>
-<%-- 						<td><form:errors path="doctorForm.statename" --%>
-<%-- 								cssStyle="color: #ff0000;" class="alert alert-danger" /></td> --%>
+ 						<td><form:errors path="doctorForm.statename" 
+ 								cssStyle="color: #ff0000;" class="alert alert-danger" /></td> 
 					</spring:bind>
 				</tr>
 				<tr>
@@ -129,8 +129,8 @@
 								Number:&nbsp;&nbsp;</label></td>
 						<td><form:input path="doctorForm.streetnumber"
 								class="form-control" id="streetnumber" /></td>
-<%-- 						<td><form:errors path="doctorForm.streetnumber" --%>
-<%-- 								cssStyle="color: #ff0000;" class="alert alert-danger" /></td> --%>
+						<td><form:errors path="doctorForm.streetnumber" 
+ 								cssStyle="color: #ff0000;" class="alert alert-danger" /></td> 
 					</spring:bind>
 				</tr>
 				<tr>

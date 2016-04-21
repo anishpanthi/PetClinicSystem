@@ -15,6 +15,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.Pattern;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -31,34 +34,34 @@ public class Doctor implements Serializable {
 	@GeneratedValue
 	private int id;
 
-//	@Pattern(regexp = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
-//			+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$", message = "Invalid Email Address.")
+	@Pattern(regexp = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+			+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$", message = "Invalid Email Address.")
 	private String email;
 
-//	@NotEmpty(message = "First Name cannot be empty.")
+	@NotEmpty(message = "First Name cannot be empty.")
 	private String firstname;
 
-//	@NotEmpty(message = "Last Name cannot be empty.")
+	@NotEmpty(message = "Last Name cannot be empty.")
 	private String lastname;
 
-//	@NotEmpty(message = "Username cannot be empty.")
+	@NotEmpty(message = "Username cannot be empty.")
 	@JsonIgnore
 	private String userName;
 
 	private String phone;
 
-//	@NotEmpty(message = "City cannot be empty.")
+	@NotEmpty(message = "City cannot be empty.")
 	private String city;
 
-//	@NotEmpty(message = "House Number cannot be empty.")
+	@NotEmpty(message = "House Number cannot be empty.")
 	private String housenumber;
 
 	private String statename;
 	
-//	@NotEmpty(message = "Street Number cannot be empty.")
+	@NotEmpty(message = "Street Number cannot be empty.")
 	private String streetnumber;
 
-//	@NotEmpty(message = "Zip Code cannot be empty.")
+	@NotEmpty(message = "Zip Code cannot be empty.")
 	private String zipcode;
 
 	@JsonIgnore
