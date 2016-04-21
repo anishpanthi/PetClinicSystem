@@ -8,29 +8,25 @@
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-<title>payment</title>
+<title>Appointment</title>
 </head>
 <body>
-	<h1 align="center">Customer payment information</h1>
+	<h1 align="center">Pet Appointment Information</h1>
 	<div class="container">
 		<table class="table table-striped">
-			<th>Credit Number</th>
-			<th>Payment Mode</th>
-			<th>Owner Id</th>
-			<th>Payment Date</th>
-			<th>Amount</th>
-			<c:forEach var="pay" items="${payments}">
+			<th>Appointment Date</th>
+			<th>Appointment Time</th>
+			<th>Appointment Reason</th>
+
+			<c:forEach var="appointment" items="${appointments}">
 				<tr>
-					<td>${pay.creditNumber}</td>
-					<td>${pay.paymentMode}</td>
-					<td>${pay.ownerid}</td>
-					<td>${pay.paymentDate}</td>
-					<td>${pay.amount}</td>
+					<td>${appointment.date}</td>
+					<td>${appointment.time}</td>
+					<td>${appointment.reason}</td>
+
 				</tr>
 			</c:forEach>
-
 		</table>
-		<br /> <br /> <a href="/petclinic">Goto Home</a>
 	</div>
 </body>
 </html>

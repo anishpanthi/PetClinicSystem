@@ -40,6 +40,9 @@ public class User implements Serializable {
     
     @OneToOne(mappedBy = "user")
     private Owner owner;
+    
+    @OneToOne(mappedBy = "user")
+    private Admin admin;
 
     public User() {
     }
@@ -116,7 +119,15 @@ public class User implements Serializable {
 //        return true;
 //    }
 
-    @Override
+    public Admin getAdmin() {
+		return admin;
+	}
+
+	public void setAdmin(Admin admin) {
+		this.admin = admin;
+	}
+
+	@Override
     public String toString() {
         return "com.amt.petclinic.domain.User[ id=" + id + " ]";
     }

@@ -18,14 +18,14 @@ public class AppointmentController {
 	@Autowired
 	private AppointmentService appointmentService;
 
-	@RequestMapping(value = "/appointment", method = RequestMethod.GET)
+	@RequestMapping(value = "auth/owner/appointment", method = RequestMethod.GET)
 	public String appointmentPage(Model model) {
 		model.addAttribute("appointmentForm", new Appointment());
 		model.addAttribute("ownerForm", new Owner());
 		return "appointment";
 	}
 
-	@RequestMapping(value = "/appointment", method = RequestMethod.POST)
+	@RequestMapping(value = "auth/owner/appointment", method = RequestMethod.POST)
 	public String submitAppointmentForm(@ModelAttribute("appointmentForm") Appointment appointment,
 			@ModelAttribute("ownerForm") Owner owner, BindingResult appointmentResult) {
 

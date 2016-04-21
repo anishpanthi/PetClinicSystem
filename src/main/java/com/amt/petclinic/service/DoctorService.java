@@ -12,7 +12,7 @@ public interface DoctorService {
 
 	public List<Doctor> findAll();
 
-	public void update(Doctor doctor);
+	public void update(int id, Doctor doctor);
 
 	public Doctor findById(int id);
 	

@@ -20,7 +20,7 @@ public class PaymentController {
 	@Autowired
 	private PaymentService paymentService;
 
-	@RequestMapping(value = "/payment", method = RequestMethod.GET)
+	@RequestMapping(value = "auth/owner/payment", method = RequestMethod.GET)
 	public String paymentPage(Model model) {
 		List<String> paymentModes = new ArrayList<String>();
 		paymentModes.add("VISA");
@@ -33,7 +33,7 @@ public class PaymentController {
 		return "payment";
 	}
 
-	@RequestMapping(value = "/payment", method = RequestMethod.POST)
+	@RequestMapping(value = "auth/owner/payment", method = RequestMethod.POST)
 	public String submitpayment(@ModelAttribute("paymentForm") Payment payment, BindingResult paymentResult) {
 		// @ModelAttribute("userForm") User user) {
 		// user.setUserrole("ROLE_DOCTOR");

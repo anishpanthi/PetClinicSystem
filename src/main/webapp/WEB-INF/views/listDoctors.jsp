@@ -11,8 +11,9 @@
 <title>Feedbacks</title>
 </head>
 <body>
-	<h1 align="center">Customer Feedbacks</h1>
+
 	<div class="container">
+		<h1 align="center">List of Doctors</h1>
 		<table class="table table-striped">
 			<th>First Name</th>
 			<th>Last Name</th>
@@ -21,7 +22,7 @@
 			<th>State Name</th>
 			<th>Street Number</th>
 			<th>Zip Code</th>
-			<!-- 			<th> Pet List</th>		 -->
+			<th colspan="2" align="center">Actions</th>
 			<c:forEach var="doctor" items="${doctors}">
 				<tr>
 					<td>${doctor.firstname}</td>
@@ -31,12 +32,13 @@
 					<td>${doctor.statename}</td>
 					<td>${doctor.streetnumber}</td>
 					<td>${doctor.zipcode}</td>
-					<%-- 					<td>${doctor.petlist}</td> --%>
+					<td><a href="listDoctors/edit/${doctor.id}"
+						class="btn btn-primary">Update</a></td>
+					<td><a href="listDoctors/delete/${doctor.id}"
+						class="btn btn-danger">Delete</a></td>
 				</tr>
 			</c:forEach>
 		</table>
-		<br />
-		<br /> <a href="/petclinic">Goto Home</a>
 	</div>
 </body>
 </html>

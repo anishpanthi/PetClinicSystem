@@ -177,10 +177,7 @@ body, html {
 							</div>
 						</div>
 					</div>
-					<div class="panel-footer">
-						</span>
-					</div>
-
+					<div class="panel-footer"></div>
 				</div>
 			</div>
 		</div>

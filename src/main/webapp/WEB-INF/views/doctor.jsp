@@ -79,7 +79,7 @@
 						<td><form:password path="userForm.password"
 								class="form-control" id="password" /></td>
 <%-- 						<td><form:errors path="userForm.password" --%>
-<%-- <%-- 								cssStyle="color: #ff0000;" class="alert alert-danger" /></td> --%> --%>
+<%-- <%-- 								cssStyle="color: #ff0000;" class="alert alert-danger" /></td> --%>
 					</spring:bind>
 				</tr>
 				<tr>

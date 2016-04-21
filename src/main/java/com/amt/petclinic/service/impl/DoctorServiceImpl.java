@@ -15,7 +15,7 @@ import com.amt.petclinic.service.DoctorService;
 public class DoctorServiceImpl implements DoctorService {
 
 	@Autowired
-	private DoctorRepository doctorRepository;
+	private DoctorRepository doctorRepository;	
 
 	@Override
 	public void create(Doctor doctor) {
@@ -29,25 +29,22 @@ public class DoctorServiceImpl implements DoctorService {
 
 	@Override
 	public void delete(int id) {
-		// TODO Auto-generated method stub
-
+		doctorRepository.delete(id);
 	}
 
 	@Override
-	public void update(Doctor doctor) {
-		// TODO Auto-generated method stub
-
+	public void update(int id, Doctor doctor) {
+		doctor.setId(id);
+		doctorRepository.save(doctor);
 	}
 
 	@Override
 	public Doctor findById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		return doctorRepository.findOne(id);
 	}
 
 	@Override
 	public Doctor findByUsername(String username) {
-		// TODO Auto-generated method stub
 		return doctorRepository.findByUserName(username);
 	}
 }

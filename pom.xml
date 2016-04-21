@@ -187,12 +187,23 @@
 
 
 		<!-- start: AspectJ dependencies -->
+		<!-- <dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aspects</artifactId>
+			<version>3.2.8.RELEASE</version>
+		</dependency> -->
+
 		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjrt</artifactId>
-			<version>${org.aspectj-version}</version>
+			<version>1.8.5</version>
 		</dependency>
-
+		
+		<dependency>
+			 <groupId>org.aspectj</groupId>
+			 <artifactId>aspectjweaver</artifactId>
+			 <version>1.8.5</version>
+		 </dependency>
 		<!-- end: AspectJ dependencies -->
 
 		<!-- start: Logging dependencies -->

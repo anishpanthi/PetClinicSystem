@@ -25,12 +25,6 @@ public class AuthController {
 	@Autowired
 	private AppointmentService appointmentService;
 	
-	@RequestMapping(value = "/auth/admin/listDoctors", method = RequestMethod.GET)
-	public String fromAdminListAllDoctors(Model model) {
-		model.addAttribute("doctors", doctorService.findAll());
-		return "listDoctors";
-	}
-	
 	@RequestMapping(value = "/auth/admin/listOwners", method = RequestMethod.GET)
 	public String fromAdminListAllOwners(Model model) {
 		model.addAttribute("owners", ownerService.findAll());

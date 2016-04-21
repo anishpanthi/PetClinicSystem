@@ -20,9 +20,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.amt.petclinic.domain.Admin;
 import com.amt.petclinic.domain.Doctor;
 import com.amt.petclinic.domain.Feedback;
 import com.amt.petclinic.domain.Owner;
+import com.amt.petclinic.service.AdminService;
 import com.amt.petclinic.service.DoctorService;
 import com.amt.petclinic.service.FeedbackService;
 import com.amt.petclinic.service.OwnerService;
@@ -32,13 +34,16 @@ public class HomeController {
 
 	@Autowired
 	private FeedbackService feedbackService;
-	
+
 	@Autowired
 	private DoctorService doctorService;
-	
+
 	@Autowired
 	private OwnerService ownerService;
-	
+
+	@Autowired
+	private AdminService adminService;
+
 	HttpSession session = null;
 
 	@RequestMapping(value = { "/", "/welcome**" }, method = RequestMethod.GET)
@@ -46,6 +51,16 @@ public class HomeController {
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
 		String formattedDate = dateFormat.format(date);
+
+//		com.amt.petclinic.domain.User user = new com.amt.petclinic.domain.User();
+//		user.setUsername("admin");
+//		user.setPassword("admin");
+//		user.setUserrole("ROLE_ADMIN");
+//
+//		Admin admin = new Admin("admin@gmail.com", "Pramila", "Bhandari", user.getUsername(), "9851177720",
+//				"Bhairahawa", "10", "Region-5", "234", "32600", user);
+//		admin.setUser(user);
+//		adminService.create(admin);
 
 		ModelAndView model = new ModelAndView();
 		model.addObject("serverTime", formattedDate);
@@ -100,7 +115,11 @@ public class HomeController {
 	}
 
 	@RequestMapping(value = "/auth/admin", method = RequestMethod.GET)
-	public String afterAuthAdminPage() {
+	public String afterAuthAdminPage(Model model) {
+		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String username = user.getUsername();
+		Admin admin = adminService.findByUsername(username);
+		model.addAttribute("admin", admin);
 		return "adminAuth";
 	}
 
@@ -109,9 +128,6 @@ public class HomeController {
 		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String username = user.getUsername();
 		Doctor doctor = doctorService.findByUsername(username);
-		System.out.println("Username: "+doctor.getUserName());
-		System.out.println("First Name: "+doctor.getFirstname());
-		System.out.println("Last Name: "+doctor.getLastname());
 		model.addAttribute("doctor", doctor);
 		return "doctorAuth";
 	}
@@ -129,22 +145,4 @@ public class HomeController {
 	public String get403denied() {
 		return "redirect:/login?authFailed";
 	}
-
-	// for 403 access denied page
-	/*
-	 * @RequestMapping(value = "/403", method = RequestMethod.GET) public
-	 * ModelAndView accesssDenied() {
-	 * 
-	 * ModelAndView model = new ModelAndView();
-	 * 
-	 * // check if user is login Authentication auth =
-	 * SecurityContextHolder.getContext().getAuthentication(); if (!(auth
-	 * instanceof AnonymousAuthenticationToken)) { UserDetails userDetail =
-	 * (UserDetails) auth.getPrincipal(); model.addObject("username",
-	 * userDetail.getUsername()); }
-	 * 
-	 * model.setViewName("403"); return model;
-	 * 
-	 * }
-	 */
 }
